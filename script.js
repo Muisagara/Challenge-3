@@ -58,23 +58,38 @@ function getRandomCharacter(characters) {
 
 // Generate the password based on the user's preferences
 function generatePassword() {
-  var characterPool = "";
-
-  if (passwordOptions.hasSpecialCharacters) {
-    characterPool += specialCharacters;
-  }
-  if (passwordOptions.hasNumericCharacters) {
-    characterPool += numericCharacters;
-  }
-  if (passwordOptions.hasLowerCasedCharacters) {
-    characterPool += lowerCasedCharacters;
-  }
-  if (passwordOptions.hasUpperCasedCharacters) {
-    characterPool += upperCasedCharacters;
-  }
 
   var password = "";
-  for (var i = 0; i < passwordOptions.length; i++) {
+  var characterPool = [];
+  // will always add them to the front of the password. if needed for a special character to not be in the front 
+  // just move one of the if statements up and that will fix it.
+  if (passwordOptions.hasSpecialCharacters) {
+    characterPool = characterPool.concat(specialCharacters);
+
+    password += getRandomCharacter(specialCharacters);
+  }
+
+  if (passwordOptions.hasNumericCharacters) {
+    characterPool = characterPool.concat(numericCharacters)
+
+    password += getRandomCharacter(numericCharacters);
+  }
+
+  if (passwordOptions.hasLowerCasedCharacters) {
+    characterPool = characterPool.concat(lowerCasedCharacters)
+    
+    password += getRandomCharacter(lowerCasedCharacters);
+  }
+
+  if (passwordOptions.hasUpperCasedCharacters) {
+    characterPool = characterPool.concat(upperCasedCharacters)
+    
+    password += getRandomCharacter(upperCasedCharacters);
+  }
+
+  var passwordLength = passwordOptions.length - password.length;
+
+  for (var i = 0; i < passwordLength; i++) {
     password += getRandomCharacter(characterPool);
   }
 
