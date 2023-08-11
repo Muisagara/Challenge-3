@@ -10,20 +10,16 @@ var passwordOptions = {};
 // Get password options from user input
 function getPasswordOptions() {
   var length = parseInt(prompt("How many characters (Must be larger than 8 or smaller than 128)."));
-
-  if (Number.isNaN(length)) {
-    alert("Password must be a number.");
-    return null;
-  }
-
-  if (length < 8) {
-    alert("Password must be longer than 8 characters.");
-    return null;
-  }
-
-  if (length > 128) {
-    alert("Password must be shorter than 128 characters.");
-    return null;
+// added while statement to stop the function running if things were false.
+  while (Number.isNaN(length) || length < 8 || length > 128) {
+    if (Number.isNaN(length)) {
+      alert("Password must be a number.");
+    } else if (length < 8) {
+      alert("Password must be longer than 8 characters.");
+    } else if (length > 128) {
+      alert("Password must be shorter than 128 characters.");
+    }
+    length = parseInt(prompt("How many characters (Must be larger than 8 or smaller than 128)."));
   }
 
   var hasSpecialCharacters = confirm("Add Special Characters?");
@@ -31,14 +27,17 @@ function getPasswordOptions() {
   var hasLowerCasedCharacters = confirm("Add Lower Characters?");
   var hasUpperCasedCharacters = confirm("Add UpperCased Characters?");
 
-  if (
-    hasSpecialCharacters === false &&
-    hasNumericCharacters === false &&
-    hasLowerCasedCharacters === false &&
-    hasUpperCasedCharacters === false
+  while (
+    !hasSpecialCharacters &&
+    !hasNumericCharacters &&
+    !hasLowerCasedCharacters &&
+    !hasUpperCasedCharacters
   ) {
-    alert("Must choose one of the options.");
-    return null;
+    alert("Must choose at least one character type.");
+    hasSpecialCharacters = confirm("Add Special Characters?");
+    hasNumericCharacters = confirm("Add Numeric Characters?");
+    hasLowerCasedCharacters = confirm("Add Lower Characters?");
+    hasUpperCasedCharacters = confirm("Add UpperCased Characters?");
   }
 
   passwordOptions = {

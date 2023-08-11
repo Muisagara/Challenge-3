@@ -8,7 +8,6 @@ SO THAT I can create a strong password that provides greater security
 ## Description
 A password Generator that helps create new passwords with certain requierments.
 
-
 ## Usage
 <ul> 
     <li> Helps create strong passwords. </li>
@@ -16,10 +15,12 @@ A password Generator that helps create new passwords with certain requierments.
 </ul>
 
 ## Deployed Site
-
+[Password Generator](https://muisagara.github.io/Challenge-3/)
 
 ## Screenshots
 ![pciture of password genarator](image.png)
+
+
 ## Credited Sources
 <ul>
     <li>"I received assistance from an AI Learning Assistant while working on this code."</li>
